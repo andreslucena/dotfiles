@@ -19,6 +19,23 @@ alias bd bin/dev
 
 alias snr "HOSTNAME=(hostname) sudo nixos-rebuild switch --flake  /etc/nixos/.#default --impure"
 
+function nix-rebuild
+    set HOSTNAME (hostname)
+
+    switch $HOSTNAME
+        case carseatheadrest
+            sudo nixos-rebuild switch --flake /etc/nixos/.#default --impure
+        case pavement
+            nix run github:nix-community/home-manager -- switch --flake /home/apereira/Software/dotfiles/nix#apereira
+        case '*'
+            echo "Unknown hostname: $HOSTNAME"
+            echo "Available options:"
+            echo "  - carseatheadrest (NixOS)"
+            echo "  - pavement (Ubuntu + Home Manager)"
+            return 1
+    end
+end
+
 function ber
     set original_dir (pwd)
 
