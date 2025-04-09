@@ -1,10 +1,10 @@
-{ config, pkgs, nixpkgs-unstable, ... }:
+{ lib, config, pkgs, nixpkgs-unstable, ... }:
 
 let
   hostname = builtins.getEnv "HOSTNAME";
 in {
   home.username = "apereira";
-  home.homeDirectory = "/home/apereira";
+  home.homeDirectory = lib.mkForce "/home/apereira";
   home.stateVersion = "24.05";
 
   imports =
