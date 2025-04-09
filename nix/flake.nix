@@ -1,5 +1,5 @@
 {
-  description = "NixOS configuration";
+  description = "Multi-system Nix configuration";
 
   inputs = {
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
@@ -12,27 +12,42 @@
     let
       system = "x86_64-linux";
       username = "apereira";
-
-      baseModules =
-        if builtins.pathExists "/etc/nixos/configuration.nix"
-        then [ /etc/nixos/configuration.nix ]
-        else [ ];
-
-    in {
+      pkgs = nixpkgs-unstable.legacyPackages.${system};
+    in
+    {
+      # NixOS configuration
       nixosConfigurations.default = nixpkgs-unstable.lib.nixosSystem {
         inherit system;
-        modules = baseModules ++ [
+        modules = [
+          (if builtins.pathExists "/etc/nixos/configuration.nix"
+           then /etc/nixos/configuration.nix 
+           else {})
+          
           home-manager.nixosModules.home-manager
           {
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
-
-            home-manager.extraSpecialArgs = {
-              inherit nixpkgs-unstable;
+            home-manager.users.${username} = import ./home.nix;
+            home-manager.extraSpecialArgs = { 
+              inherit inputs nixpkgs-unstable;
             };
-
-            home-manager.users.apereira = import ./home-manager.nix;
           }
+        ];
+      };
+
+      # Home Manager configuration
+      homeConfigurations.${username} = home-manager.lib.homeManagerConfiguration {
+        inherit pkgs;
+        modules = [ ./home.nix ];
+        extraSpecialArgs = { 
+          inherit inputs nixpkgs-unstable;
+        };
+      };
+
+      # Development shell
+      devShells.${system}.default = pkgs.mkShell {
+        packages = with pkgs; [
+          # Add your dev tools here
         ];
       };
     };
