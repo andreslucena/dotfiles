@@ -24,9 +24,9 @@ function nix-rebuild
 
     switch $HOSTNAME
         case carseatheadrest
-            sudo nixos-rebuild switch --flake /etc/nixos/.#default --impure
+            HOSTNAME=(hostname) sudo nixos-rebuild switch --flake /home/apereira/Software/dotfiles/nix/.#default --impure
         case pavement
-            nix run github:nix-community/home-manager -- switch --flake /home/apereira/Software/dotfiles/nix#apereira
+            HOSTNAME=(hostname) nix run github:nix-community/home-manager -- switch --flake /home/apereira/Software/dotfiles/nix#default --impure
         case '*'
             echo "Unknown hostname: $HOSTNAME"
             echo "Available options:"
