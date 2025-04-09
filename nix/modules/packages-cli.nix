@@ -6,12 +6,14 @@
     direnv
     devenv
     zellij
+    mise
 
     # Version control
     git
     gh
 
     # System utilities
+    fish
     ripgrep
     fd
     bat
