@@ -1,0 +1,8 @@
+.envrc 
+devenv.local.nix
+devenv.lock
+devenv.*
+.devenv*
+.direnv*
+gemset.nix
+.pre-commit-config.yaml

@@ -1,0 +1,49 @@
+[user]
+	email = andreslucena@gmail.com
+	name = Andrés Pereira de Lucena
+	signingkey = 4273E8F31EE763CD
+[core]
+	excludesfile = /home/apereira/.gitignore
+	editor = /run/current-system/sw/bin/nvim
+	; pager = delta
+[merge]
+	tool = nvimdiff
+[mergetool]
+  prompt = false
+  keepBackup = false
+[mergetool "nvimdiff"]
+  layout = "LOCAL,BASE, REMOTE / MERGED"
+[pull]
+	rebase = true
+[init]
+	defaultBranch = main
+[color]
+	ui = true
+[alias]
+	st = status
+	ci = commit
+	co = checkout
+	br = branch
+; [interactive]
+;     diffFilter = delta --color-only
+; [delta]
+;     navigate = true    # use n and N to move between diff sections
+;     light = false      # set to true if you're in a terminal w/ a light background color (e.g. the default macOS terminal)
+; [diff]
+;     colorMoved = default
+[filter "lfs"]
+	process = git-lfs filter-process
+	required = true
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+[http]
+	postBuffer = 524288000
+	version = HTTP/1.1
+[branch]
+	sort = -committerdate
+[credential "https://github.com"]
+	helper = 
+	helper = !/run/current-system/sw/bin/gh auth git-credential
+[credential "https://gist.github.com"]
+	helper = 
+	helper = !/run/current-system/sw/bin/gh auth git-credential

@@ -1,0 +1,20 @@
+theme = "catpuccin_mocha"
+
+[editor]
+idle-timeout = 0
+line-number = "relative"
+mouse = false
+
+[editor.cursor-shape]
+insert = "bar"
+normal = "block"
+select = "underline"
+
+[editor.soft-wrap]
+enable = true
+
+[keys.normal]
+X = "extend_line_above"
+
+[keys.normal.space]
+space = "file_picker"
