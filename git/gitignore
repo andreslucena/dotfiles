@@ -6,3 +6,4 @@ devenv.*
 .direnv*
 gemset.nix
 .pre-commit-config.yaml
+.opencode/
