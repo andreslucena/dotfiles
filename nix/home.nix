@@ -18,6 +18,7 @@ in {
       # ./modules/specific/pavement.nix
     ] else if hostname == "carseatheadrest" then [
       # ./modules/specific/carseatheadrest.nix
+      ./modules/packages-gui.nix
       ./modules/command-not-found.nix
       ./modules/kitty.nix
       ./modules/firefox.nix
