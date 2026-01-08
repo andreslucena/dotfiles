@@ -27,7 +27,7 @@ in {
     brightnessctl
     waybar
     swww
-    rofi-wayland
+    rofi
     hyprshot
     nwg-look
     hyprlock

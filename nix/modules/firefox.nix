@@ -1,4 +1,4 @@
-{ config, pkgs, nixpkgs-unstable, ... }:
+{ config, pkgs, nixpkgs-stable, ... }:
 
 {
   programs.firefox = {

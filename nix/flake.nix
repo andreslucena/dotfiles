@@ -2,21 +2,21 @@
   description = "Multi-system Nix configuration";
 
   inputs = {
-    nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-25.11";
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
-    home-manager.url = "github:nix-community/home-manager";
-    home-manager.inputs.nixpkgs.follows = "nixpkgs-unstable";
+    home-manager.url = "github:nix-community/home-manager/release-25.11";
+    home-manager.inputs.nixpkgs.follows = "nixpkgs-stable";
   };
 
-  outputs = inputs@{ nixpkgs-unstable, nixos-hardware, home-manager, ... }:
+  outputs = inputs@{ nixpkgs-stable, nixos-hardware, home-manager, ... }:
     let
       system = "x86_64-linux";
       username = "apereira";
-      pkgs = nixpkgs-unstable.legacyPackages.${system};
+      pkgs = nixpkgs-stable.legacyPackages.${system};
     in
     {
       # NixOS configuration
-      nixosConfigurations.default = nixpkgs-unstable.lib.nixosSystem {
+      nixosConfigurations.default = nixpkgs-stable.lib.nixosSystem {
         inherit system;
         modules = [
           (if builtins.pathExists "/etc/nixos/configuration.nix"
@@ -29,7 +29,7 @@
             home-manager.useUserPackages = true;
             home-manager.users.${username} = import ./home.nix;
             home-manager.extraSpecialArgs = { 
-              inherit inputs nixpkgs-unstable;
+              inherit inputs nixpkgs-stable;
             };
           }
         ];
@@ -40,7 +40,7 @@
         inherit pkgs;
         modules = [ ./home.nix ];
         extraSpecialArgs = { 
-          inherit inputs nixpkgs-unstable;
+          inherit inputs nixpkgs-stable;
         };
       };
 

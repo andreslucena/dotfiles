@@ -1,7 +1,7 @@
-{ config, pkgs, nixpkgs-unstable, ... }:
+{ config, pkgs, nixpkgs-stable, ... }:
 
 {
-  home.packages = with nixpkgs-unstable.legacyPackages.x86_64-linux; [
+  home.packages = with nixpkgs-stable.legacyPackages.x86_64-linux; [
     helix
     simple-completion-language-server  # Often used with Helix
   ];

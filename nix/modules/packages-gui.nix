@@ -1,9 +1,9 @@
-{ config, pkgs, nixpkgs-unstable, ... }:
+{ config, pkgs, nixpkgs-stable, ... }:
 
 {
-  home.packages = with nixpkgs-unstable.legacyPackages.x86_64-linux; [
+  home.packages = with nixpkgs-stable.legacyPackages.x86_64-linux; [
     # Productivity
-    bitwarden-desktop
+    # bitwarden-desktop
     ferdium
 
     # Fonts
