@@ -10,6 +10,7 @@
     nerd-fonts.jetbrains-mono
     nerd-fonts.hack
 
+    adwaita-icon-theme
     # # Media
     # vlc
     # spotify
