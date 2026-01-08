@@ -1,31 +1,26 @@
-[language-server]
+[[language]]
+name = "erb"
+language-servers = [ { name = "ruby-lsp", only-features = ["format", "diagnostics"]}, {name = "solargraph", except-features = ["format", "diagnostics"]}, "emmet-ls", "tailwindcss-ls"]
+file-types = ["erb", "html"]
+formatter = { command = "prettier", args = ["--parser", "erb-template"] }
+auto-format = true
+
+[language.auto-pairs]
+'<' = '>'
+'%' = '%'
+"'" = "'"
+'"' = '"'
+
 [language-server.ruby-lsp]
-command = "ruby-lsp" 
-args = ["--debug"] 
+command = "ruby-lsp"
 
 [[language]]
 name = "ruby"
-formatter = { command = "bundle", args = ["exec", "rubocop", "--stdin", "foo.rb", "--fix", "--stderr"] }
-language-servers = [ "ruby-lsp", "solargraph" ]
+language-servers = ["ruby-lsp", "solargraph" ]
 auto-format = true
+# formatter = { command = "rufo", args = ["--simple-exit"] }
 
 [[language]]
 name = "yaml"
 file-types = ["yaml", "yml"]
 language-servers = [ "yaml-language-server" ]
-
-# [[language]]
-# name = "css"
-# language-servers = [ "vscode-css-language-server", "tailwindcss-language-server" ]
-
-[[language]]
-name = "erb"
-language-servers = [ "vscode-html-language-server", "tailwindcss-language-server" ]
-
-# [[language]]
-# name = "tailwindcss"
-# scope = "source.css"
-# injection-regex = "(postcss|css|html)"
-# file-types = ["css"]
-# roots = ["tailwind.config.js","tailwind.config.cjs"]
-# language-servers = [ "tailwindcss-language-server" ]
