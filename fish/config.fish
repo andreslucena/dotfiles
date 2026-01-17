@@ -18,6 +18,7 @@ alias rc "bin/rails c"
 alias bd bin/dev
 
 alias snr "HOSTNAME=(hostname) sudo nixos-rebuild switch --flake  /etc/nixos/.#default --impure"
+alias opencode "nix run github:sst/opencode" # use bleeding edge of opencode
 
 function nix-rebuild
     set HOSTNAME (hostname)
