@@ -1,18 +1,18 @@
-{ config, pkgs, nixpkgs-stable, ... }:
+{ config, pkgs, dotfilesPath, ... }:
 
 {
-  home.packages = with nixpkgs-stable.legacyPackages.x86_64-linux; [
+  home.packages = with pkgs; [
     helix
-    simple-completion-language-server  # Often used with Helix
+    simple-completion-language-server
   ];
 
   home.file = {
     ".config/helix/config.toml" = {
-      source = config.lib.file.mkOutOfStoreSymlink "/home/apereira/Software/dotfiles/helix/config.toml";
+      source = config.lib.file.mkOutOfStoreSymlink "${dotfilesPath}/helix/config.toml";
     };
 
     ".config/helix/languages.toml" = {
-      source = config.lib.file.mkOutOfStoreSymlink "/home/apereira/Software/dotfiles/helix/languages.toml";
+      source = config.lib.file.mkOutOfStoreSymlink "${dotfilesPath}/helix/languages.toml";
     };
   };
 }

@@ -1,7 +1,7 @@
-{ config, pkgs, lib, ... }:
+{ config, pkgs, lib, dotfilesPath, ... }:
 
 let
-  hyprSource = "/home/apereira/Software/dotfiles/hypr";
+  hyprSource = "${dotfilesPath}/hypr";
 in {
   home.file.".config/hypr" = {
     source = hyprSource;
@@ -11,7 +11,7 @@ in {
 
   # Log a warning to verify it's seen
   warnings = lib.mkIf (!(builtins.pathExists hyprSource)) [
-    "⚠️ The path ${hyprSource} does not exist or is not accessible."
+    "The path ${hyprSource} does not exist or is not accessible."
   ];
 
   home.packages = with pkgs; [

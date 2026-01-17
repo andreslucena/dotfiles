@@ -1,7 +1,7 @@
-{ config, pkgs, nixpkgs-stable, ... }:
+{ config, pkgs, ... }:
 
 {
-  home.packages = with nixpkgs-stable.legacyPackages.x86_64-linux; [
+  home.packages = with pkgs; [
     # Productivity
     # bitwarden-desktop
     ferdium
