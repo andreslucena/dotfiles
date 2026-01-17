@@ -3,10 +3,8 @@
 {
   home.packages = with nixpkgs-stable.legacyPackages.x86_64-linux; [
     # Development tools
-    direnv
-    devenv
     zellij
-    mise
+    devcontainer
 
     # Version control
     git

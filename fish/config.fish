@@ -60,7 +60,6 @@ export MANROFFOPT="-c"
 export EDITOR="nvim"
 
 zoxide init fish | source
-direnv hook fish | source
 
 if test -f /home/apereira/.nix-profile/bin/mise
     ~/.nix-profile/bin/mise activate fish | source
